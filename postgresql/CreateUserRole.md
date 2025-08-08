@@ -68,3 +68,27 @@ Linux/Ubuntu
     ```bash
     \du
     ```
+
+7. Mengubah konfigurasi agar dapat login ke Role secara local
+
+    Pada terminal ketikan perintah berikut:
+    ```bash
+    sudo nano /etc/postgresql/16/main/pg_hba.conf
+    ```
+
+    Ubah konfigurasi pada baris berikut:
+    ```
+    # Allow local connections with password
+    local    all    all   peer
+    ```
+
+    Ubah `peer` menjadi `scram-sha-256` atau `md5` (scram lebih aman).
+
+    Setelah itu restart service PostgreSQL dengan perintah berikut
+
+    ```bash
+    sudo systemctl restart postgresql
+    ```
+
+
+
